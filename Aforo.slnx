@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Aforo.Api/Aforo.Api.csproj" />
+  <Project Path="Aforo.Domain/Aforo.Domain.csproj" />
+</Solution>

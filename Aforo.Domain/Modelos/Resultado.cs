@@ -14,13 +14,20 @@ namespace Aforo.Domain.Modelos
     {
         public bool Estatus { get; set; }
         public T? Contenido { get; set; }
-        public Message? error { get; set; }
+        public Message? Error { get; set; }
 
         public Resultado(bool estatus, T? contenido, Message? error)
         {
             Estatus = estatus;
+
+            // validaciones para no permitir estados incorrectos
+            if (estatus && (contenido == null || error != null))
+                throw new ArgumentOutOfRangeException(nameof(contenido), Message.EResultado001.ToString());
+            else if (!estatus && (error == null || contenido != null))
+                throw new ArgumentOutOfRangeException(nameof(error), Message.EResultado001.ToString());
+
             Contenido = contenido;
-            this.error = error;
+            this.Error = error;
         }
     }
 }

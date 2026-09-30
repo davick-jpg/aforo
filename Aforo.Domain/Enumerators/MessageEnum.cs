@@ -11,6 +11,10 @@
         ESesion001,
         ESesion002,
         #endregion
+        // codigo de errores de resultados
+        #region Resultado
+        EResultado001,
+        #endregion
         #endregion
 
         /// <summary>
@@ -25,6 +29,5 @@
         EBoleto001
         #endregion
         #endregion
-
     }
 }

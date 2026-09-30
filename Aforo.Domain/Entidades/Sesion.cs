@@ -42,7 +42,7 @@ namespace Aforo.Domain.Entidades
         }
 
         /// <summary>
-        /// elegi una tupla para mantener la funcionalidad de mandar estatus y codigo de mensaje para posteriormente meter traducciones
+        /// se retorna solamente el mensaje
         /// </summary>
         /// <returns></returns>
         private Message DescontarBoleto()
@@ -65,11 +65,14 @@ namespace Aforo.Domain.Entidades
         /// <summary>
         /// por ahora se uno a uno pero tengo pensado poder comprar boletos en bulk
         /// es la forma de comprobar si es correcto la compra por eso queria dejar el boleano para saber si fue exito o no
-        /// ademas de que se genera y retorna el boleto o sino un nulo, podria tomar una estructura compartida para validar result, podria ser para despues pero si esta bien asi? 
+        /// ademas de que se genera y retorna el boleto o sino un nulo, podria tomar una estructura compartida para validar result
         /// </summary>
         /// <returns></returns>
-        public Resultado<Boleto>? ComprarBoleto(decimal precio)
+        public Resultado<Boleto> ComprarBoleto(decimal precio)
         {
+            if (precio <= 0)
+                return new Resultado<Boleto>(false, null, Message.EBoleto001);
+
             var result = DescontarBoleto();
 
             if (result == Message.ASesion001)
